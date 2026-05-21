@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Dancing+Script:wght@400;700&display=swap');
+
+body {
+    font-family: 'Playfair Display', serif;
+}
+
+.script-font {
+    font-family: 'Dancing Script', cursive;
+}
+
+/* Envelope Animation */
+.envelope-open {
+    animation: openEnvelope 1.2s forwards;
+}
+
+@keyframes openEnvelope {
+    0% { transform: scale(1) rotate(0deg); }
+    100% { transform: scale(0.8) translateY(-100px); opacity: 0; }
+}
+
+/* Smooth Scroll */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Maze Styles */
+#maze {
+    image-rendering: pixelated;
+    border: 4px solid #e11d48;
+}

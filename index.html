@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ethan & Sophia | Wedding Invitation</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Dancing+Script:wght@400;700&display=swap');
+    body { font-family: 'Playfair Display', serif; }
+    .script-font { font-family: 'Dancing Script', cursive; }
+  </style>
+</head>
+<body class="bg-[#f8f1e9] text-gray-800">
+
+  <!-- Envelope Screen -->
+  <div id="envelope-screen" class="min-h-screen flex items-center justify-center bg-gradient-to-br from-rose-100 to-amber-100">
+    <div class="text-center">
+      <div id="envelope" class="cursor-pointer mx-auto w-64 h-80 bg-white rounded-2xl shadow-2xl relative flex items-center justify-center border-8 border-rose-300">
+        <div class="text-8xl">✉️</div>
+        <button onclick="openEnvelope()" 
+                class="absolute bottom-6 bg-rose-500 hover:bg-rose-600 text-white px-8 py-3 rounded-full flex items-center gap-2 text-lg font-medium">
+          <i class="fas fa-heart"></i> Open Invitation
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div id="main-content" class="hidden">
+
+    <!-- Hero -->
+    <section class="min-h-screen bg-gradient-to-br from-rose-50 to-white flex items-center justify-center text-center px-4">
+      <div>
+        <h1 class="script-font text-7xl md:text-8xl text-rose-600 mb-4">Ethan & Sophia</h1>
+        <p class="text-3xl text-gray-700">Are Getting Married</p>
+        <div class="mt-10 bg-white shadow-xl inline-block px-12 py-8 rounded-3xl">
+          <p class="text-2xl">December 25, 2026</p>
+          <p class="text-rose-500">5:00 PM</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Couple Photo -->
+    <section class="py-20 bg-white">
+      <div class="max-w-4xl mx-auto px-6 text-center">
+        <img src="https://picsum.photos/id/1015/1200/800" 
+             alt="Ethan & Sophia" 
+             class="mx-auto rounded-3xl shadow-2xl w-full">
+        <p class="mt-12 text-3xl script-font text-rose-600 leading-relaxed">
+          "Two hearts, one beautiful journey that will last forever."
+        </p>
+      </div>
+    </section>
+
+    <!-- Maze Game -->
+    <section class="py-20 bg-[#f8f1e9] text-center">
+      <h2 class="text-4xl mb-8">Help Him Find Her ❤️</h2>
+      <div id="maze-container" class="mx-auto border-4 border-rose-300 rounded-2xl overflow-hidden bg-white shadow-inner" style="width: 320px; height: 320px;"></div>
+      <button onclick="resetMaze()" class="mt-6 bg-rose-500 text-white px-6 py-3 rounded-full">Reset Game</button>
+    </section>
+
+    <!-- Countdown -->
+    <section class="py-20 bg-rose-600 text-white text-center">
+      <h2 class="text-3xl mb-8">You're Invited</h2>
+      <div id="countdown" class="flex justify-center gap-8 text-4xl font-light"></div>
+    </section>
+
+    <!-- Gallery -->
+    <section class="py-20 bg-white">
+      <h2 class="text-4xl text-center mb-12">Our Moments</h2>
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-4 max-w-5xl mx-auto px-4">
+        <img src="https://picsum.photos/id/1016/800/600" class="rounded-2xl shadow">
+        <img src="https://picsum.photos/id/133/800/600" class="rounded-2xl shadow">
+        <img src="https://picsum.photos/id/201/800/600" class="rounded-2xl shadow">
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-16 text-center">
+      <h2 class="script-font text-5xl mb-6">Together Forever</h2>
+      <button onclick="showVenue()" class="bg-white text-rose-600 px-10 py-4 rounded-full text-xl font-medium">
+        📍 View Venue
+      </button>
+      <a href="https://wa.me/20123456789" target="_blank" class="block mt-8 text-green-400 hover:text-green-300 text-xl">
+        📲 WhatsApp Us
+      </a>
+    </footer>
+  </div>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
