@@ -7,88 +7,104 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Dancing+Script:wght@400;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Dancing+Script:wght@700&display=swap');
+    
     body { font-family: 'Playfair Display', serif; }
     .script-font { font-family: 'Dancing Script', cursive; }
+
+    /* Realistic Envelope */
+    .envelope {
+      width: 320px;
+      height: 220px;
+      background: linear-gradient(#f8f8f8, #e8e8e8);
+      border: 12px solid #9f1239;
+      border-radius: 10px 10px 50px 50px;
+      position: relative;
+      box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.4);
+      cursor: pointer;
+      overflow: hidden;
+      transition: transform 0.4s;
+    }
+
+    .envelope:hover {
+      transform: scale(1.03);
+    }
+
+    /* Envelope Flap */
+    .flap {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 110px;
+      background: linear-gradient(#c026d3, #9f1239);
+      clip-path: polygon(50% 65%, 0 0, 100% 0);
+      transition: all 1s ease;
+      z-index: 2;
+    }
+
+    .envelope.open .flap {
+      height: 30px;
+      transform: rotateX(180deg);
+    }
+
+    /* Button on Envelope */
+    .open-btn {
+      position: absolute;
+      bottom: 35px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #9f1239;
+      color: white;
+      padding: 12px 32px;
+      border-radius: 50px;
+      font-size: 18px;
+      font-weight: 600;
+      box-shadow: 0 10px 15px -3px rgb(159 18 57);
+      z-index: 3;
+      transition: all 0.3s;
+    }
+
+    .open-btn:hover {
+      background: #be123c;
+      transform: translateX(-50%) scale(1.08);
+    }
   </style>
 </head>
-<body class="bg-[#f8f1e9] text-gray-800">
+<body class="bg-gradient-to-br from-rose-50 via-amber-50 to-white min-h-screen">
 
   <!-- Envelope Screen -->
-  <div id="envelope-screen" class="min-h-screen flex items-center justify-center bg-gradient-to-br from-rose-100 to-amber-100">
+  <div id="envelope-screen" class="min-h-screen flex items-center justify-center p-4">
     <div class="text-center">
-      <div id="envelope" class="cursor-pointer mx-auto w-64 h-80 bg-white rounded-2xl shadow-2xl relative flex items-center justify-center border-8 border-rose-300">
-        <div class="text-8xl">✉️</div>
-        <button onclick="openEnvelope()" 
-                class="absolute bottom-6 bg-rose-500 hover:bg-rose-600 text-white px-8 py-3 rounded-full flex items-center gap-2 text-lg font-medium">
-          <i class="fas fa-heart"></i> Open Invitation
+      <h1 class="script-font text-6xl text-rose-700 mb-10 tracking-wide">Ethan & Sophia</h1>
+      
+      <div id="envelope" class="envelope mx-auto" onclick="openEnvelope()">
+        <div class="flap"></div>
+        <button class="open-btn">
+          Open Invitation <i class="fas fa-heart ml-2"></i>
         </button>
       </div>
+
+      <p class="mt-8 text-gray-600 text-lg">Click the envelope to open</p>
     </div>
   </div>
 
   <!-- Main Content -->
   <div id="main-content" class="hidden">
-
-    <!-- Hero -->
-    <section class="min-h-screen bg-gradient-to-br from-rose-50 to-white flex items-center justify-center text-center px-4">
-      <div>
-        <h1 class="script-font text-7xl md:text-8xl text-rose-600 mb-4">Ethan & Sophia</h1>
-        <p class="text-3xl text-gray-700">Are Getting Married</p>
-        <div class="mt-10 bg-white shadow-xl inline-block px-12 py-8 rounded-3xl">
-          <p class="text-2xl">December 25, 2026</p>
-          <p class="text-rose-500">5:00 PM</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Couple Photo -->
-    <section class="py-20 bg-white">
-      <div class="max-w-4xl mx-auto px-6 text-center">
-        <img src="https://picsum.photos/id/1015/1200/800" 
-             alt="Ethan & Sophia" 
-             class="mx-auto rounded-3xl shadow-2xl w-full">
-        <p class="mt-12 text-3xl script-font text-rose-600 leading-relaxed">
-          "Two hearts, one beautiful journey that will last forever."
-        </p>
-      </div>
-    </section>
-
-    <!-- Maze Game -->
-    <section class="py-20 bg-[#f8f1e9] text-center">
-      <h2 class="text-4xl mb-8">Help Him Find Her ❤️</h2>
-      <div id="maze-container" class="mx-auto border-4 border-rose-300 rounded-2xl overflow-hidden bg-white shadow-inner" style="width: 320px; height: 320px;"></div>
-      <button onclick="resetMaze()" class="mt-6 bg-rose-500 text-white px-6 py-3 rounded-full">Reset Game</button>
-    </section>
-
-    <!-- Countdown -->
-    <section class="py-20 bg-rose-600 text-white text-center">
-      <h2 class="text-3xl mb-8">You're Invited</h2>
-      <div id="countdown" class="flex justify-center gap-8 text-4xl font-light"></div>
-    </section>
-
-    <!-- Gallery -->
-    <section class="py-20 bg-white">
-      <h2 class="text-4xl text-center mb-12">Our Moments</h2>
-      <div class="grid grid-cols-2 md:grid-cols-3 gap-4 max-w-5xl mx-auto px-4">
-        <img src="https://picsum.photos/id/1016/800/600" class="rounded-2xl shadow">
-        <img src="https://picsum.photos/id/133/800/600" class="rounded-2xl shadow">
-        <img src="https://picsum.photos/id/201/800/600" class="rounded-2xl shadow">
-      </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-16 text-center">
-      <h2 class="script-font text-5xl mb-6">Together Forever</h2>
-      <button onclick="showVenue()" class="bg-white text-rose-600 px-10 py-4 rounded-full text-xl font-medium">
-        📍 View Venue
-      </button>
-      <a href="https://wa.me/20123456789" target="_blank" class="block mt-8 text-green-400 hover:text-green-300 text-xl">
-        📲 WhatsApp Us
-      </a>
-    </footer>
+    <h1 class="text-center script-font text-7xl text-rose-600 py-20">Welcome to Our Wedding</h1>
+    <!-- باقي المحتوى هيتضاف بعدين -->
   </div>
 
-  <script src="js/script.js"></script>
+  <script>
+    function openEnvelope() {
+      const envelope = document.getElementById('envelope');
+      envelope.classList.add('open');
+      
+      setTimeout(() => {
+        document.getElementById('envelope-screen').classList.add('hidden');
+        document.getElementById('main-content').classList.remove('hidden');
+      }, 1100);
+    }
+  </script>
 </body>
 </html>
